@@ -60,10 +60,9 @@ I am going to use the required technologies in the following ways:
 ### Search Functionality Plan
 
 - **User Input Logic**:
-  ```json 
+ 
   - Users must select a **location type** (e.g., country, region, or city) before searching.  
   - If no button is selected, the search action is disabled (grayed-out button or error message).
-  ```
 
 - **Button Behavior**:  
   - Users can click buttons like `Country`, `Region`, or `City`.  
