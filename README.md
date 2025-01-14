@@ -10,3 +10,84 @@ Have you ever wondered how to cook local cuisine while traveling in a foreign co
 - Recipes and instructions can be liked and promoted by other users.
 - Ability to input a location to view the most popular local dishes and recipes, curated based on community feedback.
 
+### Technologies
+
+I am going to use the required technologies in the following ways:
+
+- **HTML**  
+  - Uses correct HTML structure for the application.  
+  - Three HTML pages:  
+    1. Registration Page  
+    2. Recipe Search Page  
+    3. Recipe Posting Page  
+
+- **CSS**  
+  - Provides styling for the application, ensuring responsiveness and a clean user interface.  
+  - Implements a visually appealing design for buttons, forms, and recipe cards.  
+
+- **React**  
+  - Provides a dynamic and interactive user experience.  
+  - Components for:
+    - Registration and login forms  
+    - Recipe search and display  
+    - Recipe posting forms  
+    - Real-time updates for likes using WebSocket  
+
+- **Service**  
+  Backend service with endpoints for:  
+  - `POST /login`: Authenticate users.  
+  - `GET /recipes`: Retrieve recipes based on location, popularity, or keywords.  
+  - `POST /recipes`: Upload new recipes and instructions.  
+  - `POST /like`: Allow users to like recipes and trigger real-time updates via WebSocket.  
+
+- **DB/Login**  
+  - Database stores:  
+    - Users  
+    - Recipes  
+    - Instructions  
+    - Locations  
+  - Securely stores credentials (hashed passwords).  
+  - Only authenticated users can post recipes or search for recipes/ingredients.  
+
+- **WebSocket**  
+  - As users like a recipe, updates are broadcast in real time to:  
+    - The recipe owner.  
+    - Other users viewing the recipe.  
+
+### Search Functionality Plan
+
+- **User Input Logic**:  
+  - Users must select a **location type** (e.g., country, region, or city) before searching.  
+  - If no button is selected, the search action is disabled (grayed-out button or error message).  
+
+- **Button Behavior**:  
+  - Users can click buttons like `Country`, `Region`, or `City`.  
+  - After selecting the button, users input the corresponding location (e.g., `Utah` for `Region`).  
+
+- **Search Validation**:  
+  - Ensure that a button is selected and a valid location or recipe keyword is entered before allowing the search.  
+
+### Example Workflow for Recipe Search
+
+1. **Initial State**:  
+   - All search buttons (e.g., `Country`, `Region`, `City`) are visible but not selected.  
+   - The **Search** button is disabled.
+
+2. **User Action**:  
+   - The user clicks one of the buttons (e.g., `Region`) and enters a location (e.g., `Utah`).  
+
+3. **Search Trigger**:  
+   - Once a location or keyword is entered, the **Search** button becomes active.  
+   - Clicking the **Search** button sends the query to the backend via the `GET /recipes` endpoint.
+
+4. **Result Display**:  
+   - Recipes matching the location or search query are displayed dynamically using React components.  
+
+### Similar Logic for Recipe/Ingredient Location Search
+
+- When users search for recipes, a similar logic applies for finding ingredients.  
+- Users must specify a location type and enter a valid search query to find where ingredients are available.  
+- Results should dynamically display locations where ingredients can be found, prioritized by user recommendations.
+
+
+
