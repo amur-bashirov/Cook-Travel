@@ -34,11 +34,13 @@ I am going to use the required technologies in the following ways:
     - Real-time updates for likes using WebSocket  
 
 - **Service**  
-  Backend service with endpoints for:  
-  - `POST /login`: Authenticate users.  
-  - `GET /recipes`: Retrieve recipes based on location, popularity, or keywords.  
-  - `POST /recipes`: Upload new recipes and instructions.  
-  - `POST /like`: Allow users to like recipes and trigger real-time updates via WebSocket.  
+| Endpoint                                   |                                What it does                                 |
+| ------------------------------------------ | :-------------------------------------------------------------------------: |  
+|  - `POST [`login](#login)                  |    Authenticate users.                                                      |
+|  - `GET [`/recipe/search`](#reciepesearch) |    Retrieve recipes based on location, popularity, or keywords.             |
+|  - `POST [`/recipe/upload`](#reciepeupload)|    Upload new recipes and instructions.                                     |
+|  - `POST` [`/recipe/like`](#reciepelike)   |    Allow users to like recipes and trigger real-time updates via WebSocket. |
+
 
 - **DB/Login**  
   - Database stores:  
