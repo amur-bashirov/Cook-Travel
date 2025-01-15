@@ -4,8 +4,11 @@
 Have you ever wondered how to cook local cuisine while traveling in a foreign country, where to find the ingredients in that country, or how a dish is traditionally prepared in the native town of someone important—like your boss—who’s coming over to your house? Or perhaps you’re curious about recreating a dish in the specific style of a region from halfway across the globe? The **Cook&Travel**  website brings the world of global cooking to your fingertips. It offers access to millions of recipes and step-by-step instructions for the most popular dishes from around the world.
 
 ### Design
+![Design 1](IMG_5322.HEIC)  
+![Design 2](IMG_5323.HEIC)  
+![Design 3](IMG_5324.HEIC)  
+![Searching](IMG_5325.HEIC)  
 ![About](IMG_5326.HEIC)
-![Searching](IMG_5325.HEIC)
 
 
 
