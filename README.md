@@ -1,5 +1,13 @@
 # Cook&Travel
 ## Specification Deliverable
+
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 ### Elevator pitch
 Have you ever wondered how to cook local cuisine while traveling in a foreign country, where to find the ingredients in that country, or how a dish is traditionally prepared in the native town of someone important—like your boss—who’s coming over to your house? Or perhaps you’re curious about recreating a dish in the specific style of a region from halfway across the globe? The **Cook&Travel**  website brings the world of global cooking to your fingertips. It offers access to millions of recipes and step-by-step instructions for the most popular dishes from around the world.
 
