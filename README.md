@@ -5,6 +5,7 @@ Have you ever wondered how to cook local cuisine while traveling in a foreign co
 
 ### Design
 ![about]([)](https://github.com/amur-bashirov/Cook-Travel/blob/main/IMG_5326.HEIC)
+
 ![searching](./IMG 5325.HEIC)
 
 
