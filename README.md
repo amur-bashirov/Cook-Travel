@@ -38,7 +38,8 @@ I am going to use the required technologies in the following ways:
     1. Registration Page  
     2. Recipe Search Page  
     3. Recipe Posting Page
-    4. About Page
+    4. Logged in About Page
+    5. Logged out About Page
 
 - **CSS**  
   - Provides styling for the application, ensuring responsiveness and a clean user interface.  
