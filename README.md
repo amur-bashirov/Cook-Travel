@@ -37,7 +37,8 @@ I am going to use the required technologies in the following ways:
   - Three HTML pages:  
     1. Registration Page  
     2. Recipe Search Page  
-    3. Recipe Posting Page  
+    3. Recipe Posting Page
+    4. About Page
 
 - **CSS**  
   - Provides styling for the application, ensuring responsiveness and a clean user interface.  
