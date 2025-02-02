@@ -12,11 +12,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 Have you ever wondered how to cook local cuisine while traveling in a foreign country, where to find the ingredients in that country, or how a dish is traditionally prepared in the native town of someone important—like your boss—who’s coming over to your house? Or perhaps you’re curious about recreating a dish in the specific style of a region from halfway across the globe? The **Cook&Travel**  website brings the world of global cooking to your fingertips. It offers access to millions of recipes and step-by-step instructions for the most popular dishes from around the world.
 
 ### Design
-<img src="IMG_5322.HEIC" alt="Design 1" width="200">
-<img src="IMG_5323.HEIC" alt="Design 2" width="200">
+<img src="IMG_5322.HEIC" alt="Design 1" width="200"> <img src="IMG_5323.HEIC" alt="Design 2" width="200"> 
 <img src="IMG_5324.HEIC" alt="Design 3" width="200">
-<img src="IMG_5325.HEIC" alt="Searching" width="200">
-<img src="IMG_5326.HEIC" alt="About" width="200">
+<img src="IMG_5325.HEIC" alt="Searching" width="200"> <img src="IMG_5326.HEIC" alt="About" width="200">
+
 
 
 
