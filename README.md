@@ -91,7 +91,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Proper HTML element usage** - I spent a lot of time learning about elements. I used header, footer, main, nav, img, a, fieldset, input, button, form, and many more.
 - [x] **Links** - Links between views.
 - [x] **Text** - About page has text.
-- [x] **3rd party API placeholder** - About page has a place to display an inspirational quote.
 - [x] **Images** - Image is displayed on the about page.
 - [x] **Login placeholder** - Placeholder for auth on the login page.
 - [x] **DB data placeholder** - for the most popular reciepes or ingridients locations in the region in the search page.
