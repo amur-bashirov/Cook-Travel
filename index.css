@@ -1,6 +1,30 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background: black !important;
-  }
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: rgba(20, 71, 200, 0.835) !important;
+}
+
+.navbar-brand {
+  padding-left: 0.3em;
+  border-bottom: solid rgb(182, 182, 182) thin;
+  line-height: 1;
+}
+
+.navbar-nav .nav-item {
+  line-height: 1;
+  text-allign: end !important;
+  padding: 0 0.6em;
+  margin-right: 10px;
+}
+
+.navbar {
+  background: green !important;  /* Stronger override */
+  border: none !important;  /* Removes unwanted borders */
+}
+
+
+.navbar-nav {
+  margin-right: 10px !important; 
+}
+
