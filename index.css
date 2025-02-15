@@ -1,8 +1,13 @@
 body {
-  height: 100%;
+  overflow-y: auto;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: rgba(20, 71, 200, 0.835) !important;
+  background-image: url('Images/edgar-chaparro-6ccJQ5qPFvY-unsplash.jpg') !important;
+  background-size: auto !important;  /* Keeps the original image size */
+  background-repeat: no-repeat !important;
+  background-size: 100vw auto !important; /* Full width, natural height */
+  background-position: top center !important;
 }
 
 .navbar-brand {
@@ -19,12 +24,49 @@ body {
 }
 
 .navbar {
-  background: green !important;  /* Stronger override */
+  color: black !important;
+  background: white !important;  /* Stronger override */
   border: none !important;  /* Removes unwanted borders */
+}
+header a{
+  color:black !important;
+}
+
+main {
+  flex: 1 ;
+  min-height: calc(100vh - 300px);
+  max-width: 50%;
+  justify-content: space-around;
+  margin: 150px auto 80px auto;
+  padding: 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: white;
 }
 
 
 .navbar-nav {
   margin-right: 10px !important; 
+}
+
+main button:hover{
+  text-decoration: underline;
+}
+
+
+footer {
+  color: black !important;
+  background-color: white 
+}
+
+footer a {
+  color: black !important;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 

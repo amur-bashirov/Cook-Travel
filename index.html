@@ -19,7 +19,7 @@
   <body>
     <header class="container-fluid">
       <nav class="navbar fixed-top navbar-dark d-flex">
-        <a class="navbar-brand" href="#">Simon<sup>&reg;</sup></a>
+        <a class="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
         <ul class="navbar-nav flex-row">
           <li class="nav-item">
             <a class="nav-link" href="logged_out_about.html">About</a>
@@ -33,31 +33,35 @@
     
     
 
-
-    <main >
-      <h1>Welcome to <em>Eat&Travel</em></h1>
-      <p>Please log in to access all features.</p>
-      <form method="get" action="play.html">
-        <div>
-          <span>@</span>
-          <input type="text" placeholder="your@email.com" />
-        </div>
-        <div>
-          <span>🔒</span>
-          <input type="password" placeholder="password" />
-        </div>
-        <button type="submit">Log In</button>
-        <p> Don't have an account? Sign up now to create and share your own recipes, get exclusive cooking tips, and explore travel advice from around the world!</p>
-      <button type="submit">Sign Up</button>
-      </form>
+    <main class="container-fluid text-center">
+      <div>
+        <h1>Welcome to <em>Eat&Travel</em></h1>
+        <p>Please log in to access all features.</p>
+        <form method="get" action="play.html">
+          <div>
+            <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input class="form-control" type="text" placeholder="your@email.com" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">🔒</span>
+            <input class="form-control" type="password" placeholder="password" />
+          </div>
+          <button type="submit" class="btn btn-primary">Log In</button>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+          <p> Don't have an account? Sign up now to create and share your own recipes, get exclusive cooking tips, and explore travel advice from around the world!</p>
+        </form>
+      </div>
     </main> 
 
 
-    <footer>
-      <hr />
-      <span class="text-reset">Amur Bashirov's</span>
-      <br />
-      <a href="https://github.com/amur-bashirov/Cook-Travel.git">GitHub</a>
+    <footer class="container-fluid fixed-bottom">
+      <nav class="navbar navbar-dark d-flex justify-content-between">
+        <a class="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
+        <div class="d-flex gap-2">
+          <a href="https://github.com/amur-bashirov/Cook-Travel.git"> Amur Bashirov's GitHub</a>
+        </div>
+      </nav>
     </footer>
   </body>
 </html>
