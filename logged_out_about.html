@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head >
     <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
+    <title>Eat&Travel</title>
     <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="about.css" />
+
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <header>
-      <h1><em>Eat&Tarvel</em><sup>&reg;</sup></h1>
-
-      <nav>
-        <menu>
-          <li><a href="index.html">Log in</a></li>
-        </menu>
+    <header class="container-fluid">
+      <nav class="navbar fixed-top navbar-dark d-flex">
+        <a class="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
+        <ul class="navbar-nav flex-row">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="search.html">Search</a>
+          </li>
+        </ul>
       </nav>
-
-      <hr />
     </header>
 
-    <main>
-      <div id="picture" class="picture-box"><img width="400px" src="travel.jpg" alt="random" /></div>
-
+    <main class="container-fluid text-center">
       <p>Have you ever wondered how to cook local cuisine while traveling in a foreign country,
          where to find the ingredients in that country, or how a dish is traditionally prepared in the native town of someone
           important—like your boss—who’s coming over to your house? Or perhaps you’re curious about recreating a dish in the specific
@@ -32,11 +43,13 @@
         </p>
     </main>
 
-    <footer>
-      <hr />
-      <span class="text-reset">Amur Bashirov's</span>
-      <br />
-      <a href="https://github.com/amur-bashirov/Cook-Travel.git">GitHub</a>
+    <footer class="container-fluid fixed-bottom">
+      <nav class="navbar navbar-dark d-flex justify-content-between">
+        <a class="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
+        <div class="d-flex gap-2">
+          <a href="https://github.com/amur-bashirov/Cook-Travel.git"> Amur Bashirov's GitHub</a>
+        </div>
+      </nav>
     </footer>
   </body>
 </html>
