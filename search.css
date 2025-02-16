@@ -9,6 +9,7 @@ body {
     background-size: 100vw auto ; /* Full width, natural height */
     background-position: top center ;
     background-attachment: fixed;
+    padding-bottom: 60px;
   }
 
   .recipe {
