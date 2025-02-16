@@ -1,39 +1,65 @@
-/* Ensures <main> is centered and fully contains its content */
-/* Centering the entire <main> */
+/* Centering <main> properly */
+html, body {
+    overflow: visible !important;
+    height: auto !important;
+}
+
+
 .main-container {
+    position: relative;
+    z-index: 9999; /* Ensure it's above other elements */
+    min-height: 100vh; /* Full viewport height */
+    display: block; /* Ensure it's visible */
+    border: 2px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 90%;
-    max-width: 600px;
-    min-height: 500px;
-    padding: 20px;
+    max-width: 800px;
     background: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin: 100px auto; /* Center it */
-  }
-  
-  /* Style for form fields inside main */
-  .form-group {
+    margin: auto; /* Ensure full centering */
+    padding: 20px; /* Prevent content from touching edges */
+}
+
+/* Style for form fields inside <main> */
+.form-group {
+    text-align: start;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 500px;
+    width: 100%;  /* Fix: Set to 100% so it fits inside .main-container */
+    max-width: 600px;
     margin-bottom: 10px;
-  }
-  
-  .form-input, .form-textarea {
-    width: 100%;
+}
+
+/* Fix input width */
+.form-input{
+    width: 100%;  /* Fix: No overflow */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  
-  .textarea-container {
-    width: 100%;
-    max-width: 500px;
-  }
+}
+
+.form-textarea {
+    width: 100%; /* Match container width */
+    height: 100%; /* Ensure it expands */
+    min-height: 150px; /* Adjust for better control */
+}
+.form-textarea {
+    width: 100%; /* Makes textarea fit inside container */
+    min-height: 150px; /* Default height */
+    height: auto; /* Expands only as needed */
+    max-height: 400px; /* Prevents excessive growth */
+    resize: vertical; /* Allows user to resize manually */
+}
+.textarea-container {
+    width: 100%; /* Ensures it stays inside .main-container */
+    max-width: 600px; /* Controls width */
+    height: auto; /* Prevents unnecessary height expansion */
+    min-height: 100px; /* Keeps it from collapsing */
+}
+
   
   
