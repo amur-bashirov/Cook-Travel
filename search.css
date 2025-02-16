@@ -1,0 +1,49 @@
+body {
+    overflow-y: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('Images/meals.jpg') ;
+    background-size: auto ;  /* Keeps the original image size */
+    background-repeat: no-repeat ;
+    background-size: 100vw auto ; /* Full width, natural height */
+    background-position: top center ;
+    background-attachment: fixed;
+  }
+
+  .recipe {
+    width: auto; /* Let it grow based on content */
+    max-width: 80%; /* Optional: Limit the maximum width to prevent it from growing too wide */
+    margin: 10px auto; /* Adds space between recipe elements */
+    padding: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+  }
+
+  .btn.btn-primary.like:hover{
+    background-color: palevioletred !important;
+  }
+
+  main {
+    flex: 1 ;
+    min-height: calc(100vh - 300px);
+    max-width: 30%;
+    justify-content: space-around;
+    margin: 150px auto 80px auto;
+    padding: 0px 0px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: white;
+  }
+  .header{
+    border-bottom: solid rgb(182, 182, 182) thin;
+  }
+  
+  

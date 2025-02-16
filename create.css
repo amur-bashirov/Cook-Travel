@@ -13,6 +13,7 @@ body {
     background-repeat: no-repeat ;
     background-size: 100vw auto ; /* Full width, natural height */
     background-position: top center ;
+    background-attachment: fixed;
   }
 
 
