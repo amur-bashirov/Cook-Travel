@@ -3,14 +3,22 @@ html, body {
     overflow: visible !important;
     height: auto !important;
 }
+body {
+    overflow-y: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('Images/meals.jpg') ;
+    background-size: auto ;  /* Keeps the original image size */
+    background-repeat: no-repeat ;
+    background-size: 100vw auto ; /* Full width, natural height */
+    background-position: top center ;
+  }
 
 
 .main-container {
-    position: relative;
-    z-index: 9999; /* Ensure it's above other elements */
     min-height: 100vh; /* Full viewport height */
     display: block; /* Ensure it's visible */
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +28,7 @@ html, body {
     background: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin: auto; /* Ensure full centering */
+    margin: 150px auto 80px auto;
     padding: 20px; /* Prevent content from touching edges */
 }
 
@@ -49,9 +57,9 @@ html, body {
 }
 .form-textarea {
     width: 100%; /* Makes textarea fit inside container */
-    min-height: 150px; /* Default height */
+    min-height: 300px; /* Default height */
     height: auto; /* Expands only as needed */
-    max-height: 400px; /* Prevents excessive growth */
+    max-height: 600px; /* Prevents excessive growth */
     resize: vertical; /* Allows user to resize manually */
 }
 .textarea-container {
