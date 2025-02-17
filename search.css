@@ -1,16 +1,15 @@
 body {
-    overflow-y: auto;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-image: url('Images/meals.jpg') ;
-    background-size: auto ;  /* Keeps the original image size */
-    background-repeat: no-repeat ;
-    background-size: 100vw auto ; /* Full width, natural height */
-    background-position: top center ;
-    background-attachment: fixed;
-    padding-bottom: 60px;
-  }
+  overflow-y: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: url('Images/meals.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: cover; /* Makes the image scale properly */
+  padding-bottom: 60px;
+}
 
   .recipe {
     width: auto; /* Let it grow based on content */
@@ -23,6 +22,7 @@ body {
     flex-direction: column;
     align-items: center;
     background: white;
+    box-shadow: 0 4px 8px rgba(3, 9, 9, 0.1);
   }
 
   .btn.btn-primary.like:hover{
@@ -30,21 +30,19 @@ body {
   }
 
   main {
-    flex: 1 ;
-    min-height: calc(100vh - 300px);
-    max-width: 30%;
-    justify-content: space-around;
-    margin: 150px auto 80px auto;
-    padding: 0px 0px;
-    display: flex;
+    max-width: 90%; /* Allows flexibility on small screens */
+    width: 400px; /* Ensures a good default size */
+    margin: 50px auto; /* Centers the content */
+    padding: 20px;
     border-radius: 10px;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
     background: white;
-  }
-  .header{
-    border-bottom: solid rgb(182, 182, 182) thin;
-  }
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+}
+
+/* Media query for smartphones */
+
   
   

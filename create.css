@@ -8,12 +8,12 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url('Images/meals.jpg') ;
-    background-size: auto ;  /* Keeps the original image size */
-    background-repeat: no-repeat ;
-    background-size: 100vw auto ; /* Full width, natural height */
-    background-position: top center ;
+    background-image: url('Images/meals.jpg');
+    background-repeat: no-repeat;
+    background-position: center top;
     background-attachment: fixed;
+    background-size: cover; /* Makes the image scale properly */
+    padding-bottom: 60px;
   }
 
 

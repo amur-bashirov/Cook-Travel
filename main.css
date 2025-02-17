@@ -6,7 +6,8 @@ body {
   background-image: url('Images/edgar-chaparro-6ccJQ5qPFvY-unsplash.jpg') ;
   background-size: auto ;  /* Keeps the original image size */
   background-repeat: no-repeat ;
-  background-size: 100vw auto ; /* Full width, natural height */
+  background-attachment: fixed;
+  background-size: cover; /* Full width, natural height */
   background-position: top center ;
 }
 
@@ -70,4 +71,8 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+
+
+
 
