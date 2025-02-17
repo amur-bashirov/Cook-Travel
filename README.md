@@ -106,6 +106,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Application background** - I changed the background for every page, now it has different images as background, some of them scrolling some are fize
 - [x] **Cascading CSS files ** - added mian.css and changed unique features for every page with additional css files.
 - [x] **Deployed files ** - deployed to simon subdomain the simon.css code and deployed updated version of my startup to startup subdomain.
+- [x] **Responsive** - use of the elements that work nicely both for desktop and phones
 
 
 
