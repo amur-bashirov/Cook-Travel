@@ -99,7 +99,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Header, footer, and main content body** - I used a common CSS file to style these `main.css`. The views specific things are in `about.css` and `play.css`.
+- [x] **Header, footer, and main content body** - I used a common CSS file to style these `main.css`. The views specific things are in `about.css` , `create.css`. and `search.css`
 - [x] **Navigation elements** - Bootstrap NavBar. 
 - [x] **Responsive to window resizing** - Bootstrap and `display:flex'
 - [x] **Application elements** - I used a lot of `display:flex` to get things to align correctly.
