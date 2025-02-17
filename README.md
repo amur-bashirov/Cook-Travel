@@ -95,44 +95,17 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **DB data placeholder** - for the most popular reciepes or ingridients locations in the region in the search page.
 - [x] **WebSocket placeholder** - The search page recipes and ingridiets locations have the amount of like and texts themselves will update for other viewrs to see the most popular ones online.
 
-# 🚀 CSS Deliverable 
+## 🚀 CSS deliverable
 
-For this deliverable, I followed the required steps to review and deploy the Simon CSS repository. Here's what I did:
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-## Tasks Completed
-
-- [x] **Cloned Simon CSS Repository**  
-  I cloned the Simon CSS repository to my development environment using Git. After cloning, I opened the project in Visual Studio Code.
-
-- [x] **Examined the CSS in VS Code**  
-  I carefully examined the CSS used within the project. I reviewed the structure and styling to ensure it aligns with best practices. The styles are organized and clear, and I made sure all necessary media queries and responsive design principles were applied.
-
-- [x] **Executed the Project Locally with Live Server**  
-  I used the VS Code Live Server extension to run the project locally and check the application’s appearance in real-time while editing. This helped me identify any styling issues that needed fixing.
-
-- [x] **Debugged Using Browser Developer Tools**  
-  I used the browser’s developer tools (Elements tab) to inspect the styling and make live adjustments to the CSS. This allowed me to identify and debug any issues with spacing, positioning, and layout.
-
-- [x] **Deployed the Project to Production Environment**  
-  After making necessary adjustments, I deployed the project using the provided deployment script. The application is now live and available on the domain’s Simon subdomain.
-
-- [x] **Created the CSS Deliverable for My Startup Application**  
-  As part of the deliverable, I ensured my name was displayed in the application. I also added a link to my GitHub repository for others to access my code. Both elements are placed prominently in the footer.
-
-- [x] **Committed and Pushed Code to GitHub**  
-  Throughout the process, I made periodic commits and pushed the code to GitHub to maintain a version history and ensure progress was tracked.
-
-- [x] **Updated the Notes.md File**  
-  I periodically updated my repository's `notes.md` file with insights and lessons learned during the project. This includes technical challenges and design considerations I encountered along the way.
-
-- [x] **Final Version Pushed to GitHub**  
-  After making all final changes and testing, I pushed the final version of the project to GitHub.
-
-- [x] **Production Deployment Complete**  
-  The startup application is now fully deployed and live on the production environment. It is accessible through the specified subdomain.
-
-- [x] **Provided URL for Canvas Assignment**  
-  I uploaded the URL to my startup application for submission in the Canvas assignment.
+- [x] **Header, footer, and main content body** - I used a common CSS file to style these `main.css`. The views specific things are in `about.css` and `play.css`.
+- [x] **Navigation elements** - Bootstrap NavBar. 
+- [x] **Responsive to window resizing** - Bootstrap and `display:flex'
+- [x] **Application elements** - I used a lot of `display:flex` to get things to align correctly.
+- [x] **Application background** - I changed the background for every page, now it has different images as background, some of them scrolling some are fize
+- [x] **Cascading CSS files ** - added mian.css and changed unique features for every page with additional css files.
+- [x] **Deployed files ** - deployed to simon subdomain the simon.css code and deployed updated version of my startup to startup subdomain.
 
 
 
