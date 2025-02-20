@@ -1,40 +1,57 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { Create } from './create/create';
+import { Search } from './search/search';
+import { About } from './about/about';
 
 
 
 
 export default function App() {
     return (
-      <div className="body bg-dark text-light">
-        <header className="container-fluid">
-          <nav className="navbar fixed-top navbar-dark d-flex">
-            <a className="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
-            <ul className="navbar-nav flex-row">
-              <li className="nav-item">
-                <a className="nav-link" href="./about/logged_out_about.html">About</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="./search/search.html">Search</a>
-              </li>
-            </ul>
-          </nav>
-        </header>
-        
-        
-    
-        <main>App components go here</main>
-    
-    
-        <footer className="container-fluid fixed-bottom">
-          <nav className="navbar navbar-dark d-flex justify-content-between">
-            <a className="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
-            <div className="d-flex gap-2">
-              <a href="https://github.com/amur-bashirov/Cook-Travel.git"> Amur Bashirov's GitHub</a>
-            </div>
-          </nav>
-        </footer>
-      </div>
+      <BrowserRouter>
+        <div className="body bg-dark text-light">
+          <header className="container-fluid">
+            <nav className="navbar fixed-top navbar-dark d-flex">
+              <NavLink className="navbar-brand" to=""><em>Eat&Travel</em><sup>&reg;</sup></NavLink>
+              <ul className="navbar-nav flex-row">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="about">About</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="search">Search</NavLink>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          
+          
+      
+          <Routes>
+            <Route path='/' element={<Login />} exact />
+            <Route path='/create' element={<Create />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/about' element={<About />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+      
+      
+          <footer className="container-fluid fixed-bottom">
+            <nav className="navbar navbar-dark d-flex justify-content-between">
+              <a className="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
+              <div className="d-flex gap-2">
+                <a href="https://github.com/amur-bashirov/Cook-Travel.git"> Amur Bashirov's GitHub</a>
+              </div>
+            </nav>
+          </footer>
+        </div>
+    </BrowserRouter>
     );
+  }
+
+  function NotFound() {
+    return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
   }
