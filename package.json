@@ -21,5 +21,12 @@
   "homepage": "https://github.com/amur-bashirov/Cook-Travel#readme",
   "devDependencies": {
     "vite": "^6.1.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.2.0"
   }
 }
