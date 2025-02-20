@@ -3,7 +3,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: url('Images/earth2.jpg');
+  background-image: url("../../Images/earth2.jpg");
   background-repeat: no-repeat;
   background-position: center top;
   background-attachment: fixed;

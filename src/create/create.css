@@ -8,7 +8,7 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url('Images/meals.jpg');
+    background-image: url("../../Images/meals.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     background-attachment: fixed;
