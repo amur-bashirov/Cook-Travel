@@ -1,0 +1,16 @@
+main {
+    flex: 1 ;
+    flex-direction: column;
+    gap: 20px;
+    min-height: calc(100vh - 300px);
+    max-width: 50%;
+    justify-content: space-around;
+    margin: 150px auto 80px auto;
+    padding: 0px 0px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: white !important;
+  }

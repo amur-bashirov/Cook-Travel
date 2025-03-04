@@ -3,7 +3,7 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: url('Images/edgar-chaparro-6ccJQ5qPFvY-unsplash.jpg') ;
+  background-image: url("../../Images/meals.jpg");
   background-size: auto ;  /* Keeps the original image size */
   background-repeat: no-repeat ;
   background-attachment: fixed;
@@ -19,7 +19,6 @@
 
 .navbar-nav .nav-item {
   line-height: 1;
-  text-allign: end !important;
   padding: 0 0.6em;
   margin-right: 10px;
 }
@@ -33,20 +32,7 @@ header a{
   color:black !important;
 }
 
-main {
-  flex: 1 ;
-  min-height: calc(100vh - 300px);
-  max-width: 50%;
-  justify-content: space-around;
-  margin: 150px auto 80px auto;
-  padding: 0px 0px;
-  display: flex;
-  border-radius: 10px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  background: white;
-}
+
 
 
 .navbar-nav {

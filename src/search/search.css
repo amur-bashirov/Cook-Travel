@@ -13,12 +13,13 @@ body {
 
   .recipe {
     width: auto; /* Let it grow based on content */
-    max-width: 80%; /* Optional: Limit the maximum width to prevent it from growing too wide */
+    max-width: 80%;
+    min-width: 80%; /* Optional: Limit the maximum width to prevent it from growing too wide */
     margin: 10px auto; /* Adds space between recipe elements */
     padding: 20px;
     margin-bottom: 10px;
     display: flex;
-    border-radius: 10px;
+    border-radius: 10px;  
     flex-direction: column;
     align-items: center;
     background: white;
@@ -29,9 +30,9 @@ body {
     background-color: palevioletred !important;
   }
 
-  main {
+  .search-bar {
     max-width: 90%; /* Allows flexibility on small screens */
-    width: 400px; /* Ensures a good default size */
+    width: 60%; /* Ensures a good default size */
     margin: 50px auto; /* Centers the content */
     padding: 20px;
     border-radius: 10px;
@@ -41,6 +42,19 @@ body {
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
 }
+main {
+  display: flex;
+  flex-direction: column;
+  background: transparent !important;
+  width: 100% !important; /* Adjust width to 90% of the viewport */
+  max-width: 1200px !important; /* Set to transparent to inherit body background */
+  gap: 20px; /* Adds spacing between child elements */
+}
+.search-bar, .recipe {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}
+
 
 /* Media query for smartphones */
 

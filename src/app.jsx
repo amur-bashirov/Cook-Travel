@@ -13,7 +13,7 @@ import { About } from './about/about';
 export default function App() {
     return (
       <BrowserRouter>
-        <div className="body bg-dark text-light">
+        <div className="body bg-dark text-dark">
           <header className="container-fluid">
             <nav className="navbar fixed-top navbar-dark d-flex">
               <NavLink className="navbar-brand" to=""><em>Eat&Travel</em><sup>&reg;</sup></NavLink>
@@ -23,6 +23,12 @@ export default function App() {
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="search">Search</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/">Login</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="create">Create</NavLink>
                 </li>
               </ul>
             </nav>
