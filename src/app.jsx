@@ -25,9 +25,12 @@ export default function App() {
                   <NavLink className="nav-link" to="search">Search</NavLink>
                 </li>
                 <li className="nav-item">
+<<<<<<< HEAD
                   <NavLink className="nav-link" to="/">Login</NavLink>
                 </li>
                 <li className="nav-item">
+=======
+>>>>>>> 316a980f4429e7eacbc5c4481f5d1a3d546b989c
                   <NavLink className="nav-link" to="create">Create</NavLink>
                 </li>
               </ul>
