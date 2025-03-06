@@ -108,6 +108,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Deployed files ** - deployed to simon subdomain the simon.css code and deployed updated version of my startup to startup subdomain.
 - [x] **Responsive** - use of the elements that work nicely both for desktop and phones
 
+- [ ] 
+## 🚀 React part 1: Routing deliverable
+
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+
+- [x] **Bundled using Vite** - Easy to install and use Vite.
+- [x] **Components** - Easy to bring the code over from HTML, but had issues with the CSS for main, becuase I had some code outside main which made it complecated.
+- [x] **Router** - Easy to creating the component routing.
 
 
 
