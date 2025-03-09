@@ -45,9 +45,6 @@ export default function App() {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/">Login</NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="create">Create</NavLink>
-                </li>
               </ul>
             </nav>
           </header>
