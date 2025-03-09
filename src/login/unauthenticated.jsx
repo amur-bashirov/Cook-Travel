@@ -1,6 +1,5 @@
 import React from 'react';
-import "../app.css";
-import "./login.css";
+
 
 import Button from 'react-bootstrap/Button';
 import { MessageDialog } from './messageDialog';
@@ -22,7 +21,6 @@ export function Unauthenticated(props) {
 
   return (
     <>
-    <main className="container-fluid text-center">
     <div>
       <h1>Welcome to <em>Eat&Travel</em></h1>
       <p>Please log in to access all features.</p>
@@ -45,7 +43,6 @@ export function Unauthenticated(props) {
       </form>
       <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
     </div>
-  </main> 
     </>
 
   );
