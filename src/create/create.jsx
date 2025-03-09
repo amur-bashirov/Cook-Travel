@@ -1,14 +1,44 @@
 import React from 'react';
 import "../app.css"
 import "./create.css";
+import { Post } from './Post';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 export function Create() {
+  const [type, setType] = useState('everything');
+  const [country, setCountry] = useState('');
+  const [region, setRegion] = useState('');
+  const [district, setDistrict] = useState('');
+  const [description, setDescription] = useState('');
+  
+
+  
+  const handleTypeChange = (event) => {setType(event.target.value);};
+  const handleCountryChange = (event) => setCountry(event.target.value);
+  const handleRegionChange = (event) => setRegion(event.target.value);
+  const handleDistrictChange = (event) => setDistrict(event.target.value);
+  const handleDescriptionChange = (event) => setDescription(event.target.value);
+  
+
+  
+  
+
   return (
     <main className="main-container">
       <h2 className="main-title">Create your own recipe or suggest a location</h2>
       <div className="form-group">
         <label htmlFor="type">Type:</label>
-        <select id="type" name="vaType" defaultValue="everything">
+        <select
+          id="type"
+          name="vaType"
+          value={type}
+          onChange={handleTypeChange}
+          className="form-input"
+        >
             <optgroup label="choose type">
               <option value="everything">everything</option>
               <option value="recipe">recipe</option>
@@ -18,7 +48,14 @@ export function Create() {
       </div>
       <div className="form-group">
         <label htmlFor="country">Country:</label>
-        <input list="countries" id="country" className="form-input" placeholder="Type to search..."></input>
+        <input 
+          list="countries" 
+          id="country"
+          onChange={handleCountryChange}
+          className="form-input" 
+          placeholder="Type to search..." 
+          value={country}
+        />
         <datalist id="countries">
             <option value="Afghanistan"></option>
             <option value="Albania"></option>
@@ -189,20 +226,54 @@ export function Create() {
     </div>
       <div className="form-group">
         <label htmlFor="region">Region:</label>
-        <input type="text" id="region" className="form-input" placeholder="Type region">
-        </input>
+        <input 
+          type="text" 
+          id="region" 
+          onChange={handleRegionChange} 
+          className="form-input" 
+          placeholder="Type region"
+          value={region}
+        />
       </div>
       <div className="form-group">
         <label htmlFor="district">District:</label>
-        <input type="text" id="district" className="form-input" placeholder="Type city or district">
-        </input>
+        <input 
+          type="text" 
+          id="district" 
+          onChange={handleDistrictChange}
+          className="form-input" 
+          placeholder="Type city or district"
+          value={district}
+        />
       </div>
       <div className="textarea-container">
         <label htmlFor="description">Description:</label>
-        <textarea id="description" className="form-textarea" placeholder="your text htmlFor recipe or locations here..."></textarea>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <textarea
+          id="description"
+          onChange={handleDescriptionChange}
+          className="form-textarea"
+          placeholder="your text for recipe or locations here..."
+          value={description}
+        />
+        <Button type="submit"  className="btn btn-primary" 
+        variant='primary' onClick={() => submition(type,country,region,district,description)}>
+        Submit
+        </Button>
       </div>
 
     </main>
   );
+  
+}
+
+function submition(type,country,region,district,description){
+  if (type && country && region && district && description){
+    const p = new Post(type, country, region, district, description)
+    localStorage.setItem('Post', JSON.stringify(p));
+    const navigate = useNavigate();
+    navigate('/created')
+  }
+  else{
+    alert('You need to fill in everything');
+  }
 }
