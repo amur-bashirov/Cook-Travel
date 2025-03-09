@@ -6,11 +6,18 @@ import { Login } from './login/login';
 import { Create } from './create/create';
 import { Search } from './search/search';
 import { About } from './about/about';
+import { AuthState } from './login/authState';
 
 
 
 
 export default function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
+
+
     return (
       <BrowserRouter>
         <div className="body bg-dark text-dark">
@@ -21,9 +28,20 @@ export default function App() {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="about">About</NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="search">Search</NavLink>
+                {authState === AuthState.Authenticated && (
+                <li className='nav-item'>
+                  <NavLink className='nav-link' to='search'>
+                    Search
+                  </NavLink>
                 </li>
+              )}
+              {authState === AuthState.Authenticated && (
+                <li className='nav-item'>
+                  <NavLink className='nav-link' to='create'>
+                    Create
+                  </NavLink>
+                </li>
+              )}
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/">Login</NavLink>
                 </li>
@@ -37,7 +55,20 @@ export default function App() {
           
       
           <Routes>
-            <Route path='/' element={<Login />} exact />
+          <Route
+            path='/'
+            element={
+              <Login
+                userName={userName}
+                authState={authState}
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+              />
+            }
+            exact
+          />
             <Route path='/create' element={<Create />} />
             <Route path='/search' element={<Search />} />
             <Route path='/about' element={<About />} />
