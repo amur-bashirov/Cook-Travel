@@ -34,6 +34,8 @@ export class Post {
     return this.likedBy.includes(userName);
   }
 
+  
+
   /**
    * Add a like from a user if they haven't already liked the post.
    * @param {string} userName - The user's name.
@@ -42,26 +44,28 @@ export class Post {
     if (!this.hasUserLiked(userName)) {
       this.likedBy.push(userName);
       this.likes++;
-
-      // Retrieve existing posts from localStorage
-      const storedPosts = localStorage.getItem('posts');
-      let posts = storedPosts ? JSON.parse(storedPosts) : [];
-
-      // Remove the current post from the posts array
-      posts = posts.filter(post => post.id !== this.id);
-
-      // Find the index to insert the post before the first post with equal likes
-      const insertIndex = posts.findIndex(post => post.likes === this.likes);
-
-      // If such a post is found, insert before it; otherwise, append to the end
-      if (insertIndex !== -1) {
-        posts.splice(insertIndex, 0, this);
-      } else {
-        posts.push(this);
-      }
-
-      // Update localStorage
-      localStorage.setItem('posts', JSON.stringify(posts));
+    } else {
+      this.likedBy = this.likedBy.filter(user => user !== userName);
+      this.likes--;
     }
+    // Retrieve existing posts from localStorage
+    const storedPosts = localStorage.getItem('posts');
+    let posts = storedPosts ? JSON.parse(storedPosts) : [];
+
+    // Remove the current post from the posts array
+    posts = posts.filter(post => post.id !== this.id);
+
+    // Find the index to insert the post before the first post with equal likes
+    const insertIndex = posts.findIndex(post => post.likes === this.likes);
+
+    // If such a post is found, insert before it; otherwise, append to the end
+    if (insertIndex !== -1) {
+      posts.splice(insertIndex, 0, this);
+    } else {
+      posts.push(this);
+    }
+
+    // Update localStorage
+    localStorage.setItem('posts', JSON.stringify(posts));
   }
 }
