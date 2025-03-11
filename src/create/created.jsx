@@ -1,11 +1,13 @@
 import React from 'react';
 import "../app.css"
-import "./create.css";
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 
+
+
 export function Created() {
+    const navigate = useNavigate();
     return (
         <main className="main-container">
         <div>

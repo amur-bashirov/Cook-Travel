@@ -4,6 +4,7 @@ import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Create } from './create/create';
+import { Created } from './create/created';
 import { Search } from './search/search';
 import { About } from './about/about';
 import { AuthState } from './login/authState';
@@ -69,6 +70,7 @@ export default function App() {
             <Route path='/create' element={<Create />} />
             <Route path='/search' element={<Search />} />
             <Route path='/about' element={<About />} />
+            <Route path='/created' element={<Created />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
       

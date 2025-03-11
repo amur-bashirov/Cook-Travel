@@ -1,6 +1,8 @@
 import React from 'react';
 import "../app.css";
 import "./search.css";
+import { Post } from '../post';
+
 
 export function Search() {
   return (

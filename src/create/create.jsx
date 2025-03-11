@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../app.css"
 import "./create.css";
-import { Post } from './Post';
+import { Post } from '../post';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ export function Create() {
   const [region, setRegion] = useState('');
   const [district, setDistrict] = useState('');
   const [description, setDescription] = useState('');
-  
+  const navigate = useNavigate();
 
   
   const handleTypeChange = (event) => {setType(event.target.value);};
@@ -22,8 +22,18 @@ export function Create() {
   const handleRegionChange = (event) => setRegion(event.target.value);
   const handleDistrictChange = (event) => setDistrict(event.target.value);
   const handleDescriptionChange = (event) => setDescription(event.target.value);
-  
 
+
+
+  function submition(type,country,region,district,description){
+    if (type !='' && country !='' && region !='' && district != '' && description != ''){
+      const p = new Post(type, country, region, district, description)
+      navigate('/created')
+    }
+    else{
+      alert('You need to fill in everything');
+    }
+  }
   
   
 
@@ -266,14 +276,4 @@ export function Create() {
   
 }
 
-function submition(type,country,region,district,description){
-  if (type && country && region && district && description){
-    const p = new Post(type, country, region, district, description)
-    localStorage.setItem('Post', JSON.stringify(p));
-    const navigate = useNavigate();
-    navigate('/created')
-  }
-  else{
-    alert('You need to fill in everything');
-  }
-}
+
