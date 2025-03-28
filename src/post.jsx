@@ -74,6 +74,11 @@ export class Post {
     // Retrieve existing posts from localStorage
     const storedPosts = localStorage.getItem('posts');
     let posts = storedPosts ? JSON.parse(storedPosts) : [];
+
+
+    if (type && type.toLowerCase() !== 'everything') {
+      posts = posts.filter(post => post.type === type);
+    }
   
     // Filter by country if provided
     if (country) {

@@ -1,17 +1,75 @@
 import React from 'react';
 import "../app.css";
 import "./search.css";
-import { Post } from '../post';
+import { Post, addLike, searchPosts } from '../post';
 
 
 export function Search() {
+
+  const [type, setType] = useState('everything');
+  const [country, setCountry] = useState('');
+  const [region, setRegion] = useState('');
+  const [district, setDistrict] = useState('');
+  
+
+
+  const handleTypeChange = (event) => {setType(event.target.value);};
+  const handleCountryChange = (event) => setCountry(event.target.value);
+  const handleRegionChange = (event) => setRegion(event.target.value);
+  const handleDistrictChange = (event) => setDistrict(event.target.value);
+
+  function searching(type, country, region, district) {
+    let posts = [];
+    if (country !== '' && region !== '' && district !== '') {
+      posts = searchPosts({ country, region, district, type });
+    } else if (country !== '' && region !== '') {
+      posts = searchPosts({ country, region, type });
+    } else if (country !== '') {
+      posts = searchPosts({ country, type });
+    } else {
+      posts = searchPosts({ type });
+    }
+    PostsList({posts})
+  }
+
+
+  function PostsList({ posts }) {
+    return (
+      <div>
+        {posts.map(post => (
+          <div key={post.id} className="recipe">
+            <p>{post.description}</p>
+            <p>
+              <em>{post.type}</em>: {post.country}{post.region ? `, ${post.region}` : ''}{post.district ? `, ${post.district}` : ''}
+            </p>
+            <button type="button" className="btn btn-primary like">
+              {post.likes} likes
+            </button>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  
+  
+
+
+
+
+
   return (
     <main>
       <div className="search-bar">
         <p> You can search reciepies or find best ingridients all around the World!</p>
         <li>
             <label htmlFor="type">Type: </label>
-            <select id="type" name="vaType" defaultValue="everything">
+          <select
+          id="type"
+          name="vaType"
+          value={type}
+          onChange={handleTypeChange}
+          className="form-input"
+          >
             <optgroup label="choose type">
               <option value="everything">everything</option>
               <option value="recipe">recipe</option>
@@ -22,7 +80,12 @@ export function Search() {
         </li> 
         <li>       
             <label htmlFor="country">Country:</label>
-            <input list="countries" id="country" name="country" placeholder="Type to find country's top" />
+            <input list="countries"
+             id="country"
+             className="form-input"
+             onChange={handleCountryChange}
+            placeholder="Type to find country's top" 
+            value={country}/>
             <datalist id="countries">
                 <option value="Afghanistan"></option>
                 <option value="Albania"></option>
@@ -202,16 +265,30 @@ export function Search() {
 
         <li>
             <label htmlFor="Region">Region: </label>
-            <input type="Region" id="region" name="varRegion" placeholder="Type to find region's top" />
+            <input type="text" 
+          id="region" 
+          onChange={handleRegionChange} 
+          className="form-input" 
+           placeholder="Type to find region's top" 
+           value={region}/>
           </li>
         <li>
             <label htmlFor="District" > District: </label>
-            <input type="District" id = "district" name = "varDistrict" placeholder="Type to find disctrict's top"/>
+            <input 
+            type="text" 
+            id="district" 
+            onChange={handleDistrictChange}
+            className="form-input" 
+            placeholder="Type to find disctrict's top"
+            value={district}/>
         </li>
 
           <p></p>
         <div className="create">
-        <button type="search" className="btn btn-primary">Search</button>
+        <Button type="search" className="btn btn-primary"
+        variant='primary' onClick={() => searching(type, country, region, district)}>
+          Search
+        </Button>
         <p>Trending recipes and ingridients locations right now from around the world!</p>
         </div>
       </div>
@@ -221,12 +298,7 @@ export function Search() {
 
   
 
-  {/* <div className="recipe">
-  <p className="header"><em>Ingredients in World of Warcraft</em></p>
-  <p>Herbs in Elwynn Forest, ore in Dun Morogh, fish in Stranglethorn Vale, and spices in Darnassus. Check local vendors htmlFor items.</p>
-  <p><em>Locations of ingredients</em>: Warcraft, Stormwind</p>
-  <button type="button" className="btn btn-primary like">105 likes</button>
-  </div>
+  {/* 
   
   <div className="recipe">
       <p className="header"><em>Mac & Cheese</em></p>

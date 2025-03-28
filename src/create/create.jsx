@@ -266,7 +266,7 @@ export function Create() {
           value={description}
         />
         <Button type="submit"  className="btn btn-primary" 
-        variant='primary' onClick={() => submition(type,country,region,district,description)}>
+        variant='primary' onClick={() => submition(type, country, region, district, description)}>
         Submit
         </Button>
       </div>
