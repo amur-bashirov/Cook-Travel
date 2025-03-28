@@ -1,6 +1,5 @@
 import React from 'react';
 import "../app.css";
-import "./login.css";
 
 import { Unauthenticated } from './unauthenticated';
 import { Authenticated } from './authenticated';

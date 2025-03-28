@@ -218,11 +218,14 @@ export function Search() {
 
       <br></br>
 
-      <div className="recipe">
-      <p className="header"><em>Ingredients in World of Warcraft</em></p>
-      <p>Herbs in Elwynn Forest, ore in Dun Morogh, fish in Stranglethorn Vale, and spices in Darnassus. Check local vendors htmlFor items.</p>
-      <p><em>Locations of ingredients</em>: Warcraft, Stormwind</p>
-      <button type="button" className="btn btn-primary like">105 likes</button>
+
+  
+
+  {/* <div className="recipe">
+  <p className="header"><em>Ingredients in World of Warcraft</em></p>
+  <p>Herbs in Elwynn Forest, ore in Dun Morogh, fish in Stranglethorn Vale, and spices in Darnassus. Check local vendors htmlFor items.</p>
+  <p><em>Locations of ingredients</em>: Warcraft, Stormwind</p>
+  <button type="button" className="btn btn-primary like">105 likes</button>
   </div>
   
   <div className="recipe">
@@ -244,7 +247,7 @@ export function Search() {
       <p>Mix flour, eggs, milk, water, sugar, and salt. Add melted butter. Fry thin pancakes on a hot pan with oil. Flip when golden. Serve with sour cream, jam, or honey.</p>
       <p><em>Recipe</em>: Russia, Moscow, Arbat</p>
       <button type="button" className="btn btn-primary like">35 likes</button>
-  </div>
+  </div> */}
   
     </main>
   );

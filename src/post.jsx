@@ -68,4 +68,31 @@ export class Post {
     // Update localStorage
     localStorage.setItem('posts', JSON.stringify(posts));
   }
+
+
+  searchPosts({ country, region, district } = {}) {
+    // Retrieve existing posts from localStorage
+    const storedPosts = localStorage.getItem('posts');
+    let posts = storedPosts ? JSON.parse(storedPosts) : [];
+  
+    // Filter by country if provided
+    if (country) {
+      posts = posts.filter(post => post.country === country);
+    }
+  
+    // Filter by region if provided
+    if (region) {
+      posts = posts.filter(post => post.region === region);
+    }
+  
+    // Filter by district (town) if provided
+    if (district) {
+      posts = posts.filter(post => post.district === district);
+    }
+  
+    return posts;
+  }
+  
+
+
 }
