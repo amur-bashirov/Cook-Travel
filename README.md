@@ -123,6 +123,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **All functionality implemented or mocked out** - created proper logins, also created page stores all the posts and search page shows them and likes are implemented.
 - [x] **Simon** - added simon to [My server link](https://simon.eatandtravel.click).
+- [x] **Multiple hooks** - implemented many usages of useState and used useEffect in search.jsx
 
 
 
