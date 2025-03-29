@@ -68,7 +68,7 @@ export default function App() {
             exact
           />
             <Route path='/create' element={<Create />} />
-            <Route path='/search' element={<Search />} />
+            <Route path='/search' element={<Search userName={userName}/>} />
             <Route path='/about' element={<About />} />
             <Route path='/created' element={<Created />} />
             <Route path='*' element={<NotFound />} />

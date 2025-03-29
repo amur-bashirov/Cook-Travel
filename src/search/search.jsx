@@ -5,7 +5,7 @@ import { Post } from '../post';
 import { Button } from 'react-bootstrap';
 
 
-export function Search() {
+export function Search(userName) {
 
   const [type, setType] = useState('everything');
   const [country, setCountry] = useState('');
@@ -25,42 +25,53 @@ export function Search() {
 
   function searching(type, country, region, district) {
     console.log('Searching with:', { type, country, region, district });
-    let posts = [];
-    if (country !== '' && region !== '' && district !== '') {
-      posts = Post.searchPosts({ country, region, district, type });
-    } else if (country !== '' && region !== '') {
-      posts = Post.searchPosts({ country, region, type });
-    } else if (country !== '') {
-      posts = Post.searchPosts({ country, type });
-    } else {
-      posts = Post.searchPosts({ type });
-    }
-    setPosts(posts);
-    console.log('Updated posts:', posts);
+    let searchParams = { type };
+    if (country) searchParams.country = country;
+    if (region) searchParams.region = region;
+    if (district) searchParams.district = district;
+  
+    const foundPosts = Post.searchPosts(searchParams);
+    setPosts(foundPosts);
+    console.log('Updated posts:', foundPosts);
   }
+  
 
 
-  function PostsList({ posts }) {
+  function PostsList({ posts, userName, setPosts }) {
+    // Rehydrate posts by setting their prototype to Post.prototype without calling the constructor
+    const rehydratedPosts = posts.map(post =>
+      Object.setPrototypeOf(post, Post.prototype)
+    );
+  
+    const handleLike = (post) => {
+      post.addLike(userName);
+      // Update the state with the new posts array to trigger a re-render
+      setPosts([...rehydratedPosts]);
+    };
+  
     return (
       <div>
-        {posts.map(post => (
+        {rehydratedPosts.map(post => (
           <div key={post.id} className="recipe">
             <p>{post.description}</p>
             <p>
-              <em>{post.type}</em>: {post.country}{post.region ? `, ${post.region}` : ''}{post.district ? `, ${post.district}` : ''}
+              <em>{post.type}</em>: {post.country}
+              {post.region ? `, ${post.region}` : ''}
+              {post.district ? `, ${post.district}` : ''}
             </p>
-            <button type="button" className="btn btn-primary like">
+            <Button
+              type="button"
+              className="btn btn-primary like"
+              onClick={() => handleLike(post)}
+            >
               {post.likes} likes
-            </button>
-            {/* <Button type="button" className="btn btn-primary"
-          variant='primary' onClick={() => Post.addLike()}>
-         {post.likes} likes
-        </Button> */}
+            </Button>
           </div>
         ))}
       </div>
     );
   }
+  
   
   
 
@@ -306,7 +317,7 @@ export function Search() {
 
       <br></br>
       {/* Render posts if any */}
-      {posts.length > 0 && <PostsList posts={posts} />}
+      {posts.length > 0 && <PostsList posts={posts} userName={userName} setPosts={setPosts} />}
 
 
   

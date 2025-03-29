@@ -40,7 +40,7 @@ export class Post {
    * Add a like from a user if they haven't already liked the post.
    * @param {string} userName - The user's name.
    */
-   static addLike(userName) {
+    addLike(userName) {
     if (!this.hasUserLiked(userName)) {
       this.likedBy.push(userName);
       this.likes++;
