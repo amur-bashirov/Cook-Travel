@@ -117,6 +117,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Components** - Easy to bring the code over from HTML, but had issues with the CSS for main, becuase I had some code outside main which made it complecated.
 - [x] **Router** - Easy to creating the component routing.
 
+## 🚀 React part 2: Reactivity
+
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+
+- [x] **All functionality implemented or mocked out** - created proper logins, also created page stores all the posts and search page shows them and likes are implemented.
+- [x] **Simon** - added simon to [My server link](https://simon.eatandtravel.click).
+
 
 
 
