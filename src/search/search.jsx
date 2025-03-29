@@ -15,6 +15,10 @@ export function Search(userName) {
     const savedPosts = localStorage.getItem('posts');
     return savedPosts ? JSON.parse(savedPosts) : [];
   });
+
+  useEffect(() => {
+    console.log("Search component rendered.");
+  });
   
 
 
