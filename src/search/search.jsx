@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../app.css";
 import "./search.css";
-import { Post, addLike, searchPosts } from '../post';
+import { Post } from '../post';
+import { Button } from 'react-bootstrap';
 
 
 export function Search() {
@@ -10,6 +11,10 @@ export function Search() {
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
   const [district, setDistrict] = useState('');
+  const [posts, setPosts] = useState(() => {
+    const savedPosts = localStorage.getItem('posts');
+    return savedPosts ? JSON.parse(savedPosts) : [];
+  });
   
 
 
@@ -19,17 +24,19 @@ export function Search() {
   const handleDistrictChange = (event) => setDistrict(event.target.value);
 
   function searching(type, country, region, district) {
+    console.log('Searching with:', { type, country, region, district });
     let posts = [];
     if (country !== '' && region !== '' && district !== '') {
-      posts = searchPosts({ country, region, district, type });
+      posts = Post.searchPosts({ country, region, district, type });
     } else if (country !== '' && region !== '') {
-      posts = searchPosts({ country, region, type });
+      posts = Post.searchPosts({ country, region, type });
     } else if (country !== '') {
-      posts = searchPosts({ country, type });
+      posts = Post.searchPosts({ country, type });
     } else {
-      posts = searchPosts({ type });
+      posts = Post.searchPosts({ type });
     }
-    PostsList({posts})
+    setPosts(posts);
+    console.log('Updated posts:', posts);
   }
 
 
@@ -45,6 +52,10 @@ export function Search() {
             <button type="button" className="btn btn-primary like">
               {post.likes} likes
             </button>
+            {/* <Button type="button" className="btn btn-primary"
+          variant='primary' onClick={() => Post.addLike()}>
+         {post.likes} likes
+        </Button> */}
           </div>
         ))}
       </div>
@@ -264,7 +275,7 @@ export function Search() {
             </li>
 
         <li>
-            <label htmlFor="Region">Region: </label>
+            <label htmlFor="region">Region: </label>
             <input type="text" 
           id="region" 
           onChange={handleRegionChange} 
@@ -273,7 +284,7 @@ export function Search() {
            value={region}/>
           </li>
         <li>
-            <label htmlFor="District" > District: </label>
+            <label htmlFor="district" > District: </label>
             <input 
             type="text" 
             id="district" 
@@ -285,15 +296,17 @@ export function Search() {
 
           <p></p>
         <div className="create">
+        <p>Trending recipes and ingridients locations right now from around the world!</p>
         <Button type="search" className="btn btn-primary"
         variant='primary' onClick={() => searching(type, country, region, district)}>
           Search
         </Button>
-        <p>Trending recipes and ingridients locations right now from around the world!</p>
         </div>
       </div>
 
       <br></br>
+      {/* Render posts if any */}
+      {posts.length > 0 && <PostsList posts={posts} />}
 
 
   

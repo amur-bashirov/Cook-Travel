@@ -40,7 +40,7 @@ export class Post {
    * Add a like from a user if they haven't already liked the post.
    * @param {string} userName - The user's name.
    */
-  addLike(userName) {
+   static addLike(userName) {
     if (!this.hasUserLiked(userName)) {
       this.likedBy.push(userName);
       this.likes++;
@@ -70,13 +70,13 @@ export class Post {
   }
 
 
-  searchPosts({ country, region, district } = {}) {
+  static searchPosts({ type, country, region, district } = {}) {
     // Retrieve existing posts from localStorage
     const storedPosts = localStorage.getItem('posts');
     let posts = storedPosts ? JSON.parse(storedPosts) : [];
 
 
-    if (type && type.toLowerCase() !== 'everything') {
+    if (type && type !== 'everything') {
       posts = posts.filter(post => post.type === type);
     }
   
@@ -94,6 +94,8 @@ export class Post {
     if (district) {
       posts = posts.filter(post => post.district === district);
     }
+    console.log("Searched posts inside searchPosts:", posts);
+
   
     return posts;
   }
