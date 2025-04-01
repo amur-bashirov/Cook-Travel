@@ -27,16 +27,28 @@ export function Search(userName) {
   const handleRegionChange = (event) => setRegion(event.target.value);
   const handleDistrictChange = (event) => setDistrict(event.target.value);
 
-  function searching(type, country, region, district) {
-    console.log('Searching with:', { type, country, region, district });
-    let searchParams = { type };
-    if (country) searchParams.country = country;
-    if (region) searchParams.region = region;
-    if (district) searchParams.district = district;
   
-    const foundPosts = Post.searchPosts(searchParams);
-    setPosts(foundPosts);
-    console.log('Updated posts:', foundPosts);
+
+  // Search posts by calling the backend API.
+  async function searching(type, country, region, district) {
+    console.log('Searching with:', { type, country, region, district });
+    const params = new URLSearchParams();
+    params.append("type", type);
+    if (country) params.append("country", country);
+    if (region) params.append("region", region);
+    if (district) params.append("district", district);
+
+    try {
+      const response = await fetch(`/api/posts/search?${params.toString()}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const foundPosts = await response.json();
+      setPosts(foundPosts);
+      console.log('Updated posts:', foundPosts);
+    } catch (error) {
+      console.error("Error during search:", error);
+    }
   }
   
 
@@ -326,28 +338,7 @@ export function Search(userName) {
 
   
 
-  {/* 
   
-  <div className="recipe">
-      <p className="header"><em>Mac & Cheese</em></p>
-      <p>Cook pasta, make a cheese sauce by melting butter, adding flour, then milk. Stir in cheese until smooth. Combine with pasta, season with salt and pepper. Bake htmlFor a golden finish. Enjoy!</p>
-      <p><em>Recipe</em>: United States, Utah, Provo</p>
-      <button type="button" className="btn btn-primary like">85 likes</button>
-  </div>
-  
-  <div className="recipe">
-      <p className="header"><em>Miso Soup</em></p>
-      <p>Mix miso paste with dashi broth. Add tofu, seaweed, and green onions. Simmer and serve hot.</p>
-      <p><em>Recipe</em>: Japan, Tokyo, Shibuya</p>
-      <button type="button" className="btn btn-primary like">55 likes</button>
-  </div>
-  
-  <div className="recipe">
-      <p className="header"><em>Russian Blinis</em></p>
-      <p>Mix flour, eggs, milk, water, sugar, and salt. Add melted butter. Fry thin pancakes on a hot pan with oil. Flip when golden. Serve with sour cream, jam, or honey.</p>
-      <p><em>Recipe</em>: Russia, Moscow, Arbat</p>
-      <button type="button" className="btn btn-primary like">35 likes</button>
-  </div> */}
   
     </main>
   );

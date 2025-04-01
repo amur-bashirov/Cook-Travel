@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../app.css"
 import "./create.css";
-import axios from 'axios';
+
 import { Post } from '../post';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -26,37 +26,45 @@ export function Create() {
 
 
 
-  function submition(type, country, region, district, description) {
-    if (type !== '' && country !== '' && region !== '' && district !== '' && description !== '') {
+  async function submition(type, country, region, district, description) {
+    if (type && country && region && district && description) {
       const newPost = {
         type,
         country,
         region,
         district,
         description,
-        likes: [], // Initialize likes
+        likes: [] // Initialize likes array if needed
       };
   
-      // Send the newPost to your backend API
-      fetch('/api/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPost),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
-          navigate('/created');
-        })
-        .catch((error) => {
-          console.error('Error:', error);
+      try {
+        // Use an absolute URL if necessary or set up a proxy in package.json
+        const response = await fetch('/api/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newPost),
         });
+  
+        if (!response.ok) {
+          // Log the error response to see what is returned.
+          const errorText = await response.text();
+          throw new Error(`Server error: ${response.status} ${errorText}`);
+        }
+  
+        const data = await response.json();
+        console.log('Success:', data);
+        navigate('/created');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error creating your post. Please try again.');
+      }
     } else {
       alert('You need to fill in everything');
     }
   }
+  
   
   
   
