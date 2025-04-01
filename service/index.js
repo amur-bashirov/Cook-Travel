@@ -104,10 +104,10 @@ apiRouter.post('/auth/create', async (req, res) => {
   }
 
   apiRouter.get('/search', verifyAuth, (_req, res) => {
-    res.send(scores);
+    res.send(posts);
   });
 
-  
+
 
   
   // setAuthCookie in the HTTP response
