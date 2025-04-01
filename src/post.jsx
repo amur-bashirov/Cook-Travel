@@ -1,6 +1,7 @@
+import { v4 as uuidv4 } from 'uuid';
 export class Post {
   constructor(type, country, region, district, description) {
-    this.id = Date.now(); // Unique identifier for the post
+    this.id = uuidv4(); // Unique identifier for the post
     this.type = type;
     this.country = country;
     this.region = region;
@@ -13,16 +14,6 @@ export class Post {
       month: '2-digit',
       day: '2-digit'
     });
-
-    // Retrieve existing posts from localStorage
-    const storedPosts = localStorage.getItem('posts');
-    let posts = storedPosts ? JSON.parse(storedPosts) : [];
-
-    // Save the current instance to the posts array
-    posts.push(this);
-
-    // Update localStorage
-    localStorage.setItem('posts', JSON.stringify(posts));
   }
 
   /**
@@ -40,7 +31,7 @@ export class Post {
    * Add a like from a user if they haven't already liked the post.
    * @param {string} userName - The user's name.
    */
-    addLike(userName) {
+    addLike(userName, posts) {
     if (!this.hasUserLiked(userName)) {
       this.likedBy.push(userName);
       this.likes++;
@@ -48,9 +39,6 @@ export class Post {
       this.likedBy = this.likedBy.filter(user => user !== userName);
       this.likes--;
     }
-    // Retrieve existing posts from localStorage
-    const storedPosts = localStorage.getItem('posts');
-    let posts = storedPosts ? JSON.parse(storedPosts) : [];
 
     // Remove the current post from the posts array
     posts = posts.filter(post => post.id !== this.id);
@@ -65,15 +53,11 @@ export class Post {
       posts.push(this);
     }
 
-    // Update localStorage
-    localStorage.setItem('posts', JSON.stringify(posts));
+    return posts
   }
 
 
-  static searchPosts({ type, country, region, district } = {}) {
-    // Retrieve existing posts from localStorage
-    const storedPosts = localStorage.getItem('posts');
-    let posts = storedPosts ? JSON.parse(storedPosts) : [];
+  static searchPosts({ type, country, region, district, posts} = {}) {
 
 
     if (type && type !== 'everything') {
