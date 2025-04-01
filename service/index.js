@@ -102,6 +102,13 @@ apiRouter.post('/auth/create', async (req, res) => {
   
     return users.find((u) => u[field] === value);
   }
+
+  apiRouter.get('/search', verifyAuth, (_req, res) => {
+    res.send(scores);
+  });
+
+  
+
   
   // setAuthCookie in the HTTP response
   function setAuthCookie(res, authToken) {
