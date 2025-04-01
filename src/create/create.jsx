@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import "../app.css"
 import "./create.css";
-
-import { Post } from '../post';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,6 +1,7 @@
 {
   "name": "cook-travel",
   "version": "1.0.0",
+  "type": "module",
   "description": "For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.",
   "main": "index.js",
   "scripts": {
@@ -28,6 +29,7 @@
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.2.0"
+    "react-router-dom": "^7.2.0",
+    "uuid": "^11.1.0"
   }
 }

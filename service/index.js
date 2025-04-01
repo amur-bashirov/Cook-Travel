@@ -1,8 +1,7 @@
-const cookieParser = require('cookie-parser');
-const bcrypt = require('bcryptjs');
-const express = require('express');
-const uuid = require('uuid');
-import { Post } from '../src/post';
+import cookieParser from 'cookie-parser';
+import bcrypt from 'bcryptjs';
+import express from 'express';
+import { Post } from '../src/post.js';
 const app = express();
 
 const authCookieName = 'token';
@@ -76,6 +75,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   
   // Default error handler
   app.use(function (err, req, res, next) {
+    console.log("called error handler")
     res.status(500).send({ type: err.name, message: err.message });
   });
   
