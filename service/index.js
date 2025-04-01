@@ -23,6 +23,7 @@ app.use(`/api`, apiRouter);
 
 // The scores and users are saved in memory and disappear whenever the service is restarted.
 let users = [];
+let posts = [];
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
