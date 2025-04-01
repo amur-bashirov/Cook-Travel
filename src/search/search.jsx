@@ -29,8 +29,8 @@ export function Search(userName) {
 
   
 
-  // Search posts by calling the backend API.
-  async function searching(type, country, region, district) {
+   // Search posts by calling the backend API.
+   async function searching(type, country, region, district) {
     console.log('Searching with:', { type, country, region, district });
     const params = new URLSearchParams();
     params.append("type", type);
@@ -39,7 +39,8 @@ export function Search(userName) {
     if (district) params.append("district", district);
 
     try {
-      const response = await fetch(`/api/posts/search?${params.toString()}`);
+      // Note: Updated endpoint to match backend route (/api/posts)
+      const response = await fetch(`/api/posts?${params.toString()}`);
       if (!response.ok) {
         throw new Error("Failed to fetch posts");
       }
@@ -59,10 +60,27 @@ export function Search(userName) {
       Object.setPrototypeOf(post, Post.prototype)
     );
   
-    const handleLike = (post) => {
-      post.addLike(userName);
-      // Update the state with the new posts array to trigger a re-render
-      setPosts([...rehydratedPosts]);
+    const handleLike = async (post) => {
+      try {
+        const response = await fetch(`/api/posts/${post.id}/like`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ userName })
+        });
+        if (!response.ok) {
+          throw new Error('Failed to update like');
+        }
+        const updatedPost = await response.json();
+        // Update the posts array by replacing the toggled post
+        const updatedPosts = rehydratedPosts.map(p =>
+          p.id === updatedPost.id ? Object.setPrototypeOf(updatedPost, Post.prototype) : p
+        );
+        setPosts(updatedPosts);
+      } catch (error) {
+        console.error("Error toggling like:", error);
+      }
     };
   
     return (
