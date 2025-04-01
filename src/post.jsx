@@ -26,11 +26,7 @@ export class Post {
 
   
 
-  /**
-   * Add a like from a user if they haven't already liked the post.
-   * @param {string} userName - The user's name.
-   */
-    addLike(userName, posts) {
+  toggleLike(userName) {
     if (!this.hasUserLiked(userName)) {
       this.likedBy.push(userName);
       this.likes++;
@@ -38,22 +34,9 @@ export class Post {
       this.likedBy = this.likedBy.filter(user => user !== userName);
       this.likes--;
     }
-
-    // Remove the current post from the posts array
-    posts = posts.filter(post => post.id !== this.id);
-
-    // Find the index to insert the post before the first post with equal likes
-    const insertIndex = posts.findIndex(post => post.likes === this.likes);
-
-    // If such a post is found, insert before it; otherwise, append to the end
-    if (insertIndex !== -1) {
-      posts.splice(insertIndex, 0, this);
-    } else {
-      posts.push(this);
-    }
-
-    return posts
   }
+
+  
 
 
   static searchPosts({ type, country, region, district, posts} = {}) {

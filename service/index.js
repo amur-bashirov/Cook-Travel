@@ -104,6 +104,68 @@ apiRouter.post('/auth/create', async (req, res) => {
     return users.find((u) => u[field] === value);
   }
 
+
+
+  async function sortPostsByLikes(posts) {
+    return posts.sort((a, b) => b.likes - a.likes);
+  }
+
+
+  apiRouter.get('/posts', verifyAuth, async (req, res) => {
+    const { type, country, region, district } = req.query;
+    const filteredPosts = Post.searchPosts({ type, country, region, district, posts });
+    const result = await sortPostsByLikes(filteredPosts);
+    res.send(result);
+  });
+  
+  // Endpoint to create a new post
+  apiRouter.post('/posts', verifyAuth, (req, res) => {
+    const { type, country, region, district, description } = req.body;
+  
+    // Validate required fields
+    if (!type || !country || !region || !district || !description) {
+      return res.status(400).send({ msg: 'Missing required fields.' });
+    }
+    
+    // Create the new post
+    const newPost = new Post(type, country, region, district, description);
+    posts.push(newPost);
+    
+    res.status(200).send(newPost);
+});
+
+
+// Endpoint to toggle likes on a specific post
+  apiRouter.post('/posts/:postId/like', verifyAuth, (req, res) => {
+    const { postId } = req.params;
+    const { userName } = req.body; // Alternatively, derive userName from the auth token
+    
+    // Validate that userName is provided
+    if (!userName) {
+      return res.status(400).send({ msg: 'Missing userName.' });
+    }
+    
+    // Find the post by ID
+    const post = posts.find(p => p.id === postId);
+    if (!post) {
+      return res.status(404).send({ msg: 'Post not found.' });
+    }
+    
+    // Toggle like using the Post class method
+    post.toggleLike(userName);
+    
+    // Optionally, if you need posts to be sorted based on likes:
+    posts = sortPostsByLikes(posts);
+    
+    res.send(post);
+  });
+
+
+
+  
+
+
+
   
   
 
