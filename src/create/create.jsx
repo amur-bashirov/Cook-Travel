@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "../app.css"
 import "./create.css";
+
 import { Post } from '../post';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -25,15 +26,39 @@ export function Create() {
 
 
 
-  function submition(type,country,region,district,description){
-    if (type !='' && country !='' && region !='' && district != '' && description != ''){
-      const p = new Post(type, country, region, district, description)
-      navigate('/created')
-    }
-    else{
+  // Submits the form, validating that all fields are filled in
+  async function submition(type, country, region, district, description) {
+    // Check if all required fields are provided
+    if (type && country && region && district && description) {
+      const newPost = { type, country, region, district, description };
+
+      try {
+        // POST request to your endpoint to create a new post
+        const response = await fetch('/api/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newPost),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Server error: ${response.status} ${errorText}`);
+        }
+
+        const data = await response.json();
+        console.log('Success:', data);
+        navigate('/created'); // Navigate to a confirmation page or similar
+      } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error creating your post. Please try again.');
+      }
+    } else {
+      // Alert if any field is missing
       alert('You need to fill in everything');
     }
   }
+  
+  
   
   
 
@@ -275,5 +300,4 @@ export function Create() {
   );
   
 }
-
 
