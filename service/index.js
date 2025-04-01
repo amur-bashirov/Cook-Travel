@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
+import { Post } from '../src/post';
 const app = express();
 
 const authCookieName = 'token';
@@ -103,9 +104,31 @@ apiRouter.post('/auth/create', async (req, res) => {
     return users.find((u) => u[field] === value);
   }
 
-  apiRouter.get('/search', verifyAuth, (_req, res) => {
-    res.send(posts);
+  app.post('/api/posts', (req, res) => {
+    const { type, country, region, district, description } = req.body;
+    const newPost = new Post(type, country, region, district, description);
+    res.status(201).json(newPost);
   });
+  
+  // Endpoint to update a post (for example, toggling a like)
+  app.put('/api/posts/:id/like', (req, res) => {
+    const postId = Number(req.params.id);
+    const { userName } = req.body;
+    const post = Post.posts.find(p => p.id === postId);
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+    post.addLike(userName);
+    res.json(post);
+  });
+  
+  // Endpoint to search for posts
+  app.get('/api/posts/search', (req, res) => {
+    const { type, country, region, district } = req.query;
+    const results = Post.searchPosts({ type, country, region, district });
+    res.json(results);
+  });
+  
 
 
 
