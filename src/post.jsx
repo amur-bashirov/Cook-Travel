@@ -8,7 +8,7 @@ export class Post {
     this.district = district;
     this.description = description;
     this.likes = 0;
-    this.likedBy = []; // Array to track users who have liked the post
+    this.likedBy = []; // Track users who have liked the post
     this.date = new Date().toLocaleDateString('en-US', {
       year: 'numeric',
       month: '2-digit',
@@ -17,9 +17,8 @@ export class Post {
   }
 
   /**
-   * Check if a user has liked the post.
-   * @param {string} userName - The user's name.
-   * @returns {boolean} - True if the user has liked the post; otherwise, false.
+   * Toggle like status for a user.
+   * @param {string} userName
    */
   hasUserLiked(userName) {
     return this.likedBy.includes(userName);
@@ -63,27 +62,19 @@ export class Post {
     if (type && type !== 'everything') {
       posts = posts.filter(post => post.type === type);
     }
-  
-    // Filter by country if provided
     if (country) {
       posts = posts.filter(post => post.country === country);
     }
-  
-    // Filter by region if provided
     if (region) {
       posts = posts.filter(post => post.region === region);
     }
-  
-    // Filter by district (town) if provided
     if (district) {
       posts = posts.filter(post => post.district === district);
     }
     console.log("Searched posts inside searchPosts:", posts);
-
-  
     return posts;
   }
-  
-
-
 }
+
+// A static property to hold all posts in memory.
+Post.posts = [];

@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
+import { Post } from '../src/post';
 const app = express();
 
 const authCookieName = 'token';
@@ -23,6 +24,7 @@ app.use(`/api`, apiRouter);
 
 // The scores and users are saved in memory and disappear whenever the service is restarted.
 let users = [];
+let posts = [];
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -101,6 +103,12 @@ apiRouter.post('/auth/create', async (req, res) => {
   
     return users.find((u) => u[field] === value);
   }
+
+  
+  
+
+
+
   
   // setAuthCookie in the HTTP response
   function setAuthCookie(res, authToken) {
