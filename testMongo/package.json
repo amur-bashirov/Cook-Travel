@@ -8,8 +8,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "mongodb": "^6.15.0"
-  }
+  },
+  "description": ""
 }

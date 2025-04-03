@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-
+const new_url = "mongodb+srv://Amur:2637221KUku@cluster0.pqpj22i.mongodb.net/admin"
 // Connect to the database cluster
 const client = new MongoClient(url);
 const db = client.db('rental');
