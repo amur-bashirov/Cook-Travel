@@ -149,7 +149,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 
 // Endpoint to toggle likes on a specific post
-  apiRouter.post('/posts/:postId/like', verifyAuth, (req, res) => {
+  apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
     const { postId } = req.params;
     const { userName } = req.body; // Alternatively, derive userName from the auth token
 
@@ -168,7 +168,7 @@ apiRouter.post('/auth/create', async (req, res) => {
     post.toggleLike(userName);
 
     // Optionally, if you need posts to be sorted based on likes:
-    posts = sortPostsByLikes(posts);
+    posts =  await sortPostsByLikes(posts);
 
     res.send(post);
   });

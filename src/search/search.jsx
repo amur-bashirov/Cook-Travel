@@ -61,6 +61,7 @@ export function Search(userName) {
     );
   
     const handleLike = async (post) => {
+      const userName = localStorage.getItem('userName');
       try {
         const response = await fetch(`/api/posts/${post.id}/like`, {
           method: 'POST',

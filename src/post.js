@@ -27,14 +27,19 @@ export class Post {
   
 
   toggleLike(userName) {
+    console.log("Before toggling, likedBy:", this.likedBy);
     if (!this.hasUserLiked(userName)) {
       this.likedBy.push(userName);
       this.likes++;
+      console.log(`Added like for ${userName}`);
     } else {
       this.likedBy = this.likedBy.filter(user => user !== userName);
       this.likes--;
+      console.log(`Removed like for ${userName}`);
     }
+    console.log("After toggling, likedBy:", this.likedBy);
   }
+  
 
   
 
