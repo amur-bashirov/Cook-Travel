@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
 const { Post } = require("./post.js")
 
@@ -23,9 +24,7 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 
-// The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
-let posts = [];
+
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -94,7 +93,7 @@ apiRouter.post('/auth/create', async (req, res) => {
       password: passwordHash,
       token: uuid.v4(),
     };
-    users.push(user);
+    await DB.addUser(user);
   
     return user;
   }
@@ -102,7 +101,10 @@ apiRouter.post('/auth/create', async (req, res) => {
   async function findUser(field, value) {
     if (!value) return null;
   
-    return users.find((u) => u[field] === value);
+    if (field === 'token') {
+      return DB.getUserByToken(value);
+    }
+    return DB.getUser(value);
   }
   
   // setAuthCookie in the HTTP response
