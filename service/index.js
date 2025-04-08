@@ -4,6 +4,8 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
+const { postProxy } = require('./postProxy')(httpServer);
+const wsInstance = postProxy(httpServer);
 
 const { Post } = require("./post.js")
 
@@ -183,7 +185,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 // Endpoint to toggle likes on a specific post
 apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
   const { postId } = req.params;
-  const { userName } = req.body; // Alternatively, derive userName from the auth token
+  const { userName } = req.body; // This is the username of the user performing the like toggle
 
   // Validate that userName is provided
   if (!userName) {
@@ -191,14 +193,21 @@ apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
   }
 
   try {
-    // Toggle the like status in the database
+    // Toggle the like status in the database (this function updates the likes and likedBy array)
     await DB.toggleLike(postId, userName);
 
-    // Retrieve the updated post
+    // Retrieve the updated post (which contains the owner's username in updatedPost.userName)
     const updatedPost = await DB.getPostById(postId);
     if (!updatedPost) {
       return res.status(404).send({ msg: 'Post not found after update.' });
     }
+
+    // Send an alert to the owner of the post that it was liked using your WebSocket proxy.
+    // Here, updatedPost.userName is assumed to be the username of the post creator (the owner).
+    wsInstance.sendMessageToUser(updatedPost.userName, {
+      type: 'alert',
+      text: 'Your post was liked!'
+    });
 
     res.status(200).send(updatedPost);
   } catch (error) {
