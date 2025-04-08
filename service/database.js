@@ -60,6 +60,17 @@ async function toggleLike(postId, userName) {
   
     await postCollection.updateOne({ id: postId }, updateQuery);
   }
+
+  async function getPostById(postId) {
+    try {
+      const post = await postCollection.findOne({ id: postId });
+      return post;
+    } catch (error) {
+      console.error(`Error retrieving post with id ${postId}:`, error);
+      throw error;
+    }
+  }
+  
   
 
 
@@ -72,5 +83,6 @@ module.exports = {
   addPost,
   getAllPosts,
   getAllPostsSortedByLikes,
-  toggleLike
+  toggleLike,
+  getPostById
 };

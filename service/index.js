@@ -181,26 +181,28 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 
 // Endpoint to toggle likes on a specific post
-  apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
-    const { postId } = req.params;
-    const { userName } = req.body; // Alternatively, derive userName from the auth token
+apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
+  const { postId } = req.params;
+  const { userName } = req.body; // Alternatively, derive userName from the auth token
 
-    // Validate that userName is provided
-    if (!userName) {
-      return res.status(400).send({ msg: 'Missing userName.' });
+  // Validate that userName is provided
+  if (!userName) {
+    return res.status(400).send({ msg: 'Missing userName.' });
+  }
+
+  try {
+    // Toggle the like status in the database
+    await DB.toggleLike(postId, userName);
+
+    // Retrieve the updated post
+    const updatedPost = await DB.getPostById(postId);
+    if (!updatedPost) {
+      return res.status(404).send({ msg: 'Post not found after update.' });
     }
 
-    // Find the post by ID
-    const post = posts.find(p => p.id === postId);
-    if (!post) {
-      return res.status(404).send({ msg: 'Post not found.' });
-    }
-
-    // Toggle like using the Post class method
-    post.toggleLike(userName);
-
-    // Optionally, if you need posts to be sorted based on likes:
-    posts =  await sortPostsByLikes(posts);
-
-    res.send(post);
-  });
+    res.status(200).send(updatedPost);
+  } catch (error) {
+    console.error('Error toggling like:', error);
+    res.status(500).send({ msg: 'Internal server error.' });
+  }
+});
