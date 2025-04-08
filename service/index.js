@@ -4,7 +4,9 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
-const { postProxy } = require('./postProxy')(httpServer);
+const http = require('http'); 
+const httpServer = http.createServer(app); 
+const { postProxy } = require('./postProxy');
 const wsInstance = postProxy(httpServer);
 
 const { Post } = require("./post.js")
