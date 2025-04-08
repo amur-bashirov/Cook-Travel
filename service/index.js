@@ -127,30 +127,57 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   async function sortPostsByLikes(posts) {
     return posts.sort((a, b) => b.likes - a.likes);
   }
+  
 
 
   apiRouter.get('/posts', verifyAuth, async (req, res) => {
     const { type, country, region, district } = req.query;
-    const filteredPosts = Post.searchPosts({ type, country, region, district, posts });
-    const result = await sortPostsByLikes(filteredPosts);
-    res.send(result);
+  
+    try {
+      // Fetch all posts from the database
+      const allPosts = await DB.getAllPosts();
+  
+      // Use the searchPosts method to filter posts
+      const filteredPosts = Post.searchPosts({
+        type,
+        country,
+        region,
+        district,
+        posts: allPosts
+      });
+  
+      // Sort the filtered posts by likes in descending order
+      const sortedPosts = await sortPostsByLikes(filteredPosts);
+  
+      res.status(200).send(sortedPosts);
+    } catch (error) {
+      console.error('Error retrieving posts:', error);
+      res.status(500).send({ msg: 'Internal server error.' });
+    }
   });
+  
 
-  // Endpoint to create a new post
-  apiRouter.post('/posts', verifyAuth, (req, res) => {
+  apiRouter.post('/posts', verifyAuth, async (req, res) => {
     const { type, country, region, district, description } = req.body;
-
+  
     // Validate required fields
     if (!type || !country || !region || !district || !description) {
       return res.status(400).send({ msg: 'Missing required fields.' });
     }
-
+  
     // Create the new post
     const newPost = new Post(type, country, region, district, description);
-    posts.push(newPost);
-
-    res.status(200).send(newPost);
-});
+  
+    try {
+      // Add the new post to the database
+      await DB.addPost(newPost);
+      res.status(201).send(newPost);
+    } catch (error) {
+      console.error('Error adding new post:', error);
+      res.status(500).send({ msg: 'Internal server error.' });
+    }
+  });
+  
 
 
 // Endpoint to toggle likes on a specific post
