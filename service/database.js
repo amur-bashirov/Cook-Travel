@@ -1,4 +1,4 @@
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -46,19 +46,21 @@ return await postCollection.find({}).sort({ likes: -1 }).toArray();
 }
     
 async function toggleLike(postId, userName) {
-    const post = await postCollection.findOne({ _id: new ObjectId(postId) });
+    const post = await postCollection.findOne({ id: postId });
   
     if (!post) {
       throw new Error('Post not found');
     }
   
     const hasUserLiked = post.likedBy.includes(userName);
+  
     const updateQuery = hasUserLiked
       ? { $pull: { likedBy: userName }, $inc: { likes: -1 } }
       : { $addToSet: { likedBy: userName }, $inc: { likes: 1 } };
   
-    await postCollection.updateOne({ _id: new ObjectId(postId) }, updateQuery);
+    await postCollection.updateOne({ id: postId }, updateQuery);
   }
+  
 
 
 
