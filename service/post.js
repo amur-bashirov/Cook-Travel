@@ -1,11 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 export class Post {
-  constructor(type, country, region, district, description) {
+  constructor(type, country, region, district, description, userName) {
     this.id = uuidv4(); // Unique identifier for the post
     this.type = type;
     this.country = country;
     this.region = region;
     this.district = district;
+    this.userName = userName;
     this.description = description;
     this.likes = 0;
     this.likedBy = []; // Track users who have liked the post

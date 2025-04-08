@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export function Create() {
+export function Create(userName) {
   const [type, setType] = useState('everything');
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
@@ -30,7 +30,7 @@ export function Create() {
   async function submition(type, country, region, district, description) {
     // Check if all required fields are provided
     if (type && country && region && district && description) {
-      const newPost = { type, country, region, district, description };
+      const newPost = { type, country, region, district, description, userName};
 
       try {
         // POST request to your endpoint to create a new post
