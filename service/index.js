@@ -185,25 +185,25 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 // Endpoint to toggle likes on a specific post
 apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
   const { postId } = req.params;
-  const { userName } = req.body; // This is the username of the user performing the like toggle
+  const likerUserName = req.body.userName; // This is the liker
 
-  // Validate that userName is provided
-  if (!userName) {
+  // Validate that likerUserName is provided
+  if (!likerUserName) {
     return res.status(400).send({ msg: 'Missing userName.' });
   }
 
   try {
     // Toggle the like status in the database (this function updates the likes and likedBy array)
-    await DB.toggleLike(postId, userName);
+    await DB.toggleLike(postId, likerUserName);
 
-    // Retrieve the updated post (which contains the owner's username in updatedPost.userName)
+    // Retrieve the updated post from the database.
+    // The updated post should include the original post owner's username in updatedPost.userName.
     const updatedPost = await DB.getPostById(postId);
     if (!updatedPost) {
       return res.status(404).send({ msg: 'Post not found after update.' });
     }
 
-    // Send an alert to the owner of the post that it was liked using your WebSocket proxy.
-    // Here, updatedPost.userName is assumed to be the username of the post creator (the owner).
+    // Send an alert to the post owner (the one stored in the post data)
     wsInstance.sendMessageToUser(updatedPost.userName, {
       type: 'alert',
       text: 'Your post was liked!'
@@ -215,3 +215,4 @@ apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
     res.status(500).send({ msg: 'Internal server error.' });
   }
 });
+
