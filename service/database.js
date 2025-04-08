@@ -1,11 +1,11 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('Cook-Travel');
 const userCollection = db.collection('user');
-const scoreCollection = db.collection('posts');
+const postCollection = db.collection('posts');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -35,8 +35,30 @@ async function updateUser(user) {
 }
 
 async function addPost(post) {
-  return scoreCollection.insertOne(post);
+  return postCollection.insertOne(post);
 }
+
+async function getAllPosts() {
+    return await postCollection.find({}).toArray();
+  }
+async function getAllPostsSortedByLikes() {
+return await postCollection.find({}).sort({ likes: -1 }).toArray();
+}
+    
+async function toggleLike(postId, userName) {
+    const post = await postCollection.findOne({ _id: new ObjectId(postId) });
+  
+    if (!post) {
+      throw new Error('Post not found');
+    }
+  
+    const hasUserLiked = post.likedBy.includes(userName);
+    const updateQuery = hasUserLiked
+      ? { $pull: { likedBy: userName }, $inc: { likes: -1 } }
+      : { $addToSet: { likedBy: userName }, $inc: { likes: 1 } };
+  
+    await postCollection.updateOne({ _id: new ObjectId(postId) }, updateQuery);
+  }
 
 
 
@@ -45,5 +67,8 @@ module.exports = {
   getUserByToken,
   addUser,
   updateUser,
-  addPost
+  addPost,
+  getAllPosts,
+  getAllPostsSortedByLikes,
+  toggleLike
 };
