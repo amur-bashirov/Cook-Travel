@@ -190,23 +190,29 @@ apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
   const { postId } = req.params;
   const likerUserName = req.body.userName; // This is the liker
 
+  console.log(`[Like] Received like request for post ID: ${postId} from user: ${likerUserName}`);
+  
   // Validate that likerUserName is provided
   if (!likerUserName) {
+    console.error("[Like] Missing userName in request body");
     return res.status(400).send({ msg: 'Missing userName.' });
   }
 
   try {
-    // Toggle the like status in the database (this function updates the likes and likedBy array)
+    // Toggle the like status in the database
+    console.log(`[Like] Toggling like for postId: ${postId} by user: ${likerUserName}`);
     await DB.toggleLike(postId, likerUserName);
 
-    // Retrieve the updated post from the database.
-    // The updated post should include the original post owner's username in updatedPost.userName.
+    // Retrieve the updated post
     const updatedPost = await DB.getPostById(postId);
     if (!updatedPost) {
+      console.error(`[Like] Post not found with id ${postId} after update`);
       return res.status(404).send({ msg: 'Post not found after update.' });
     }
+    console.log(`[Like] Updated post retrieved:`, updatedPost);
 
-    // Send an alert to the post owner (the one stored in the post data)
+    // Send an alert to the post owner
+    console.log(`[Like] Sending alert to post owner: ${updatedPost.creator}`);
     wsInstance.sendMessageToUser(updatedPost.creator, {
       type: 'alert',
       text: 'Your post was liked!'
@@ -214,8 +220,9 @@ apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
 
     res.status(200).send(updatedPost);
   } catch (error) {
-    console.error('Error toggling like:', error);
+    console.error('[Like] Error toggling like:', error);
     res.status(500).send({ msg: 'Internal server error.' });
   }
 });
+
 
