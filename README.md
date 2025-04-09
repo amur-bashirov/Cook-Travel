@@ -149,7 +149,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Backend listens for WebSocket connection** - Backend webSocket management executed in `service/postProxy.js`.
-- [x] **Frontend makes WebSocket connection** - Backend webSocket management executed in `src/unauthenticated.jss`.
+- [x] **Frontend makes WebSocket connection** - Backend webSocket management executed in `src/unauthenticated.jss`, but you need to logout first and then login so that websocket starts.
 - [x] **Data sent over WebSocket connection** - message to the alert.
 - [x] **WebSocket data displayed** - creator of the post can see alert with message when thier's post is liked.
 - [x] **Application is fully functional** 
