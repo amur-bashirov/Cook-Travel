@@ -144,6 +144,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Posts data in MongoDB** - Posts stored in MongoDB from `service/database.js`.
 - [x] **Stores credentials in MongoDB** - Auth stored in MongoDB from `service/database.js`.
 
+## 🚀 WebSocket deliverable
+
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+
+- [x] **Backend listens for WebSocket connection** - Backend webSocket management executed in `service/postProxy.js`.
+- [x] **Frontend makes WebSocket connection** - Backend webSocket management executed in `src/unauthenticated.jss`.
+- [x] **Data sent over WebSocket connection** - message to the alert.
+- [x] **WebSocket data displayed** - creator of the post can see alert with message when thier's post is liked.
+- [x] **Application is fully functional** 
+
 
 
 
