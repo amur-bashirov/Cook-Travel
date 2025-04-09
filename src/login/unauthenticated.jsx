@@ -8,17 +8,27 @@ import { MessageDialog } from './messageDialog';
 
 // You might want to move this to a separate module for reuse.
 function connectWebSocket(userName) {
-  const wsUrl = `ws://${window.location.host}?userName=${encodeURIComponent(userName)}`;
+  const wsUrl = `ws://localhost:4000?userName=${encodeURIComponent(userName)}`;
   const socket = new WebSocket(wsUrl);
 
   socket.addEventListener('open', (event) => {
     console.log('WebSocket connection established:', event);
-    // Optionally, send an initial identification message
     socket.send(JSON.stringify({ type: 'register', userName }));
   });
 
   socket.addEventListener('message', (event) => {
     console.log('Message received from server:', event.data);
+
+    try {
+      const data = JSON.parse(event.data);
+
+      // Show alert only for type "alert"
+      if (data.type === 'alert') {
+        alert(data.text); // 🔔 Alert for the post owner
+      }
+    } catch (err) {
+      console.error('Failed to parse WebSocket message', err);
+    }
   });
 
   socket.addEventListener('close', (event) => {
@@ -29,12 +39,12 @@ function connectWebSocket(userName) {
     console.error('WebSocket error:', error);
   });
 
-  // Store the WebSocket object as needed. You can, for instance,
-  // attach it to the window object or send it into a global store.
+  // Save globally if needed
   window.myWebSocket = socket;
 
   return socket;
 }
+
 
 export function Unauthenticated(props) {
   const [userName, setUserName] = React.useState(props.userName);
@@ -60,8 +70,14 @@ export function Unauthenticated(props) {
     if (response?.status === 200) {
       localStorage.setItem('userName', userName);
 
+      // Log before connecting
+      console.log("User logged in. Attempting WebSocket connection for:", userName);
+
       // Initiate the WebSocket connection before triggering the onLogin callback
       connectWebSocket(userName);
+
+       // Log after initiating the connection
+      console.log("WebSocket connection initiated for:", userName);
 
       // Call onLogin to update your app’s auth state.
       props.onLogin(userName);

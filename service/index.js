@@ -123,9 +123,10 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     });
   }
   
-  app.listen(port, () => {
+  httpServer.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
+  
 
 
   async function sortPostsByLikes(posts) {
