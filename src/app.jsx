@@ -79,7 +79,7 @@ export default function App() {
             <nav className="navbar navbar-dark d-flex justify-content-between">
               <a className="navbar-brand" href="#"><em>Eat&Travel</em><sup>&reg;</sup></a>
               <div className="d-flex gap-2">
-                <a href="https://github.com/amur-bashirov/Cook-Travel.git"> Amur Bashirov's GitHub</a>
+                <a href="https://github.com/amur-bashirov/Cook-Travel/tree/new"> Amur Bashirov's GitHub</a>
               </div>
             </nav>
           </footer>
