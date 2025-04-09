@@ -8,8 +8,10 @@ import { MessageDialog } from './messageDialog';
 
 // You might want to move this to a separate module for reuse.
 function connectWebSocket(userName) {
-  const wsUrl = `ws://localhost:4000?userName=${encodeURIComponent(userName)}`;
-  const socket = new WebSocket(wsUrl);
+  let port = window.location.port
+  const protocol = window.location.protocol == 'http:' ? 'ws' : 'wss';
+
+  const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
 
   socket.addEventListener('open', (event) => {
     console.log('WebSocket connection established:', event);
