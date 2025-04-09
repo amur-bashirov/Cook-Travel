@@ -6,7 +6,7 @@ export class Post {
     this.country = country;
     this.region = region;
     this.district = district;
-    this.userName = userName;
+    this.creator = userName;
     this.description = description;
     this.likes = 0;
     this.likedBy = []; // Track users who have liked the post

@@ -162,15 +162,15 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   
 
   apiRouter.post('/posts', verifyAuth, async (req, res) => {
-    const { type, country, region, district, description } = req.body;
+    const { type, country, region, district, description, userName } = req.body;
   
     // Validate required fields
     if (!type || !country || !region || !district || !description) {
       return res.status(400).send({ msg: 'Missing required fields.' });
     }
   
-    // Create the new post
-    const newPost = new Post(type, country, region, district, description);
+    // Create the new post with the userName
+    const newPost = new Post(type, country, region, district, description, userName);
   
     try {
       // Add the new post to the database
@@ -181,6 +181,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
       res.status(500).send({ msg: 'Internal server error.' });
     }
   });
+  
   
 
 
@@ -206,7 +207,7 @@ apiRouter.post('/posts/:postId/like', verifyAuth, async (req, res) => {
     }
 
     // Send an alert to the post owner (the one stored in the post data)
-    wsInstance.sendMessageToUser(updatedPost.userName, {
+    wsInstance.sendMessageToUser(updatedPost.creator, {
       type: 'alert',
       text: 'Your post was liked!'
     });

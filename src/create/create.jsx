@@ -30,6 +30,8 @@ export function Create(userName) {
   async function submition(type, country, region, district, description) {
     // Check if all required fields are provided
     if (type && country && region && district && description) {
+      const userName = localStorage.getItem("userName");
+
       const newPost = { type, country, region, district, description, userName};
 
       try {
